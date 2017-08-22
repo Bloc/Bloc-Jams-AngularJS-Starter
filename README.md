@@ -1,6 +1,8 @@
 # Bloc Jams AngularJS Starter
 
-On GitHub, [fork](https://help.github.com/articles/fork-a-repo/) the [Bloc Jams AngularJS Starter](https://github.com/Bloc/bloc-jams-angularjs-starter). Forking a project makes a copy and adds it to your own GitHub account. This is an important step, because the your work will need be on your Github account and not Bloc's. 
+This repository serves as a starter project for Bloc's AngularJS-driven music player app. 
+
+To get started, [fork](https://help.github.com/articles/fork-a-repo/) this repository. Forking a repository makes a copy and adds it to your own GitHub account. This is an important step, because the your work will need be on your Github account and not Bloc's. 
 
 Rename your forked repository to `bloc-jams-angularjs` in Github (available under the **Settings** tab of your repository).
 
