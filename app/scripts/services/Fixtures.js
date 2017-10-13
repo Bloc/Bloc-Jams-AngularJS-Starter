@@ -35,11 +35,11 @@
         Fixtures.getAlbum = function() {
             return albumPicasso;
         };
-
+        
         return Fixtures;
     }
 
     angular
-    .module('blocJams')
-    .factory('Fixtures', Fixtures);
+        .module('blocJams')
+        .factory('Fixtures', Fixtures);
 })();
