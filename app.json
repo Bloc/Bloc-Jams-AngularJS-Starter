@@ -1,0 +1,19 @@
+{
+  "name": "Bloc-Jams-AngularJS-Starter",
+  "scripts": {
+  },
+  "env": {
+    "IP": "localhost",
+    "PORT": "3000"
+  },
+  "formation": {
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
