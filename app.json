@@ -3,8 +3,7 @@
   "scripts": {
   },
   "env": {
-    "IP": "localhost",
-    "PORT": "3000"
+    "IP": "0.0.0.0"
   },
   "formation": {
   },
