@@ -2,7 +2,7 @@
   function config($stateProvider, $locationProvider) {
     $locationProvider
       .html5Mode({
-        enabled: true;
+        enabled: true,
         requireBase: false
       });
 
@@ -10,10 +10,14 @@
       .state('landing', {
         url: '/',
         templateUrl: '/templates/landing.html'
+      })
       .state('album', {
         url: '/',
         templateUrl: '/templates/album.html'
       })
+      .state('collection', {
+        url: '/',
+        templateUrl: '/templates/album.html'
       });
      }
      angular
