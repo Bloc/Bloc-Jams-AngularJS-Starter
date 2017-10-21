@@ -18,7 +18,7 @@
       })
       .state('collection', {
         url: '/collection',
-        collection: 'CollectionCtrl as collection',
+        controller: 'CollectionCtrl as collection',
         templateUrl: '/templates/collection.html'
       });
      }
