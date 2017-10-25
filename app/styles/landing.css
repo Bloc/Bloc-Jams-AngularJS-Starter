@@ -33,6 +33,7 @@ body.landing {
 .point {
     position: relative;
     padding: 2rem;
+    opacity: 1;
     text-align: center;
     -webkit-transform: scaleX(0.9) translateY(3rem);
     -moz-transform: scaleX(0.9) translateY(3rem);
