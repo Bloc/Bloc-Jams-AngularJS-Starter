@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="blocJams">
     <head>
         <title>Bloc Jams</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,7 +18,11 @@
                 <a href="collection.html" class="navbar-link">Collection</a>
             </div>
         </nav>
-        
+
+        <ui-view></ui-view>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
         <script src="scripts/app.js"></script>
     </body>
 </html>
