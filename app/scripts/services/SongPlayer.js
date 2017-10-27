@@ -38,7 +38,8 @@
           * @desc Active song object from list of songs
           * @type {Object}
           */
-          SongPlayer.currentSong = null;
+
+         SongPlayer.currentSong = null;
 
          SongPlayer.play = function(song) {
            song = song || SongPlayer.currentSong;
@@ -46,8 +47,10 @@
             setSong(song);
             playSong(song);
           } else if (SongPlayer.currentSong === song) {
+              setSong(song);
+
               if (currentBuzzObject.isPaused()) {
-                currentBuzzObject.play();
+                playSong(song);
               }
             }
         };
