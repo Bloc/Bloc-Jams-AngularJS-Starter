@@ -2,6 +2,12 @@
   function SongPlayer(Fixtures) {
 
     /**
+    * @desc empty object used to make methods of this function public in other linked JS documents
+    * @type {object} empty
+    */
+    var SongPlayer = {};
+
+    /**
     * @desc object used to store album info from Fixtures js file
     * @type {object} containing album info
     */
@@ -14,14 +20,11 @@
     * @param {object} song
     */
     var getSongIndex = function(song) {
+      console.log("getSongIndex of " + song.title + ": " + currentAlbum.songs.indexOf(song) );
+      console.log(song.title + song.duration + song.audioUrl);
+      console.log(currentAlbum.songs.includes(song) );
       return currentAlbum.songs.indexOf(song);
-    }
-
-    /**
-    * @desc empty object used to make methods of this function public in other linked JS documents
-    * @type {object} empty
-    */
-    var SongPlayer = {};
+    };
 
     /**
     * @desc Buzz object audio file
@@ -93,15 +96,14 @@
 
     /**
     * @function SongPlayer.previous
-    * @desc reduces currentSongIndex by 1, found using invoking getSongIndex function on SongPlayer.currentSong
+    * @desc reduces currentSongIndex by 1, found by invoking getSongIndex function on SongPlayer.currentSong
     */
     SongPlayer.previous = function(){
+
       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
 
-      console.log(currentSongIndex);
-
+      console.log(currentSongIndex + "     " + SongPlayer.currentSong.title);
       currentSongIndex--;
-
       console.log(currentSongIndex);
 
       if (currentSongIndex < 0){
