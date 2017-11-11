@@ -1,127 +1,168 @@
-(function() {
+(function(){
   function SongPlayer(Fixtures) {
 
     /**
-    * @desc empty object used to make methods of this function public in other linked JS documents
-    * @type {object} empty
+    * @desc empty songplayer object, returned at end of SongPlayer function to make properties and methods public to other js files
+    * @type object
     */
+
     var SongPlayer = {};
 
+//----------------------------------------------------------------------------------------------------------------------
+
     /**
-    * @desc object used to store album info from Fixtures js file
-    * @type {object} containing album info
+    * @desc buzz object
+    * @type object
     */
+
+    var currentBuzzObject = null;
+
+//----------------------------------------------------------------------------------------------------------------------
+
+    /**
+    * @desc contains entire album
+    * @type object
+    */
+
     var currentAlbum = Fixtures.getAlbum();
 
+//----------------------------------------------------------------------------------------------------------------------
 
     /**
     * @function getSongIndex
-    * @desc returns index of song in album
+    * @desc searches current album for song, returns index of song if found, -1 if not found
     * @param {object} song
+    * @return {number}
     */
+
     var getSongIndex = function(song) {
-      console.log("getSongIndex of " + song.title + ": " + currentAlbum.songs.indexOf(song) );
-      console.log(song.title + song.duration + song.audioUrl);
-      console.log(currentAlbum.songs.includes(song) );
       return currentAlbum.songs.indexOf(song);
-    };
+    }
 
-    /**
-    * @desc Buzz object audio file
-    * @type {object} containing file to be played
-    */
-    var currentBuzzObject = null;
-
-    /**
-    * @function playSong
-    * @desc function that will play a specific song, set status of song object to playing
-    * @param {object} song
-    */
-    var playSong = function(song){
-      currentBuzzObject.play();
-      song.playing = true;
-    };
+//----------------------------------------------------------------------------------------------------------------------
 
     /**
     * @function setSong
-    * @desc Stops currently playing song and loads new audio file as currentBuzzObject
-    * @param {Object} song
+    * @desc checks if something is already playing, if it is it stops, sets playing attr to null. sets currentBuzzObject to new buzz sound, sets currentSong to song
+    * @param {object} song
     */
+
     var setSong = function(song) {
       if (currentBuzzObject) {
         currentBuzzObject.stop();
         SongPlayer.currentSong.playing = null;
       }
-
       currentBuzzObject = new buzz.sound(song.audioUrl, {
         formats: ['mp3'],
         preload: true
       });
       SongPlayer.currentSong = song;
-    };
+    }
+
+//---------------------------------------------------------------------------------------------------------------------
 
     /**
-    * @desc variable used to keep track of current song and its play status
-    * @type {object} song object (found in fixtures.js)
+    * @function playSong
+    * @desc plays currentBuzzObject, sets song.playing attribute to true
+    * @param {object} song
     */
+
+    var playSong = function(song) {
+      currentBuzzObject.play();
+      song.playing = true;
+    }
+
+//---------------------------------------------------------------------------------------------------------------------
+
+    /**
+    * @desc object that stores exact copy of song that is playing (minus additional attribute song.playing)
+    * @type {object}
+    */
+
     SongPlayer.currentSong = null;
+
+//---------------------------------------------------------------------------------------------------------------------
 
     /**
     * @function SongPlayer.play
-    * @desc sets songs and plays song if a different song is selected in html doc, plays song if same song is selected but paused
+    * @desc plays song passed to the function
     * @param {object} song
     */
+
     SongPlayer.play = function(song) {
       song = song || SongPlayer.currentSong;
-      if (SongPlayer.currentSong !== song){
+      if (SongPlayer.currentSong !== song){ //if the song that is clicked doesn't equal current song...
         setSong(song);
         playSong(song);
-      } else if (SongPlayer.currentSong === song){
-        if (currentBuzzObject.isPaused() ) {
+      } else if (SongPlayer.currentSong === song) { //if currentSong = clicked song...
+        if (currentBuzzObject.isPaused() ) { //... and if currentSong is paused ...
           playSong(song);
         }
       }
     };
 
+//---------------------------------------------------------------------------------------------------------------------
+
     /**
     * @function SongPlayer.pause
-    * @desc pauses currently playing song, sets status of song.playing attribute to false
+    * @desc pauses current song. Param only needed when accessed from angular directive not directly bootstrapped to SongPlayer.js
     * @param {object} song
     */
+
     SongPlayer.pause = function(song) {
       song = song || SongPlayer.currentSong;
       currentBuzzObject.pause();
       song.playing = false;
     }
 
+//---------------------------------------------------------------------------------------------------------------------
+
     /**
     * @function SongPlayer.previous
-    * @desc reduces currentSongIndex by 1, found by invoking getSongIndex function on SongPlayer.currentSong
+    * @desc changes current song to one previous (according to songs index in fixtures.js), and plays it
     */
-    SongPlayer.previous = function(){
 
+    SongPlayer.previous = function() {
+        var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+        currentSongIndex--;
+
+        if (currentSongIndex < 0) {
+          currentBuzzObject.stop();
+          SongPlayer.currentSong.playing = null;
+        } else {
+          var song = currentAlbum.songs[currentSongIndex];
+          setSong(song);
+          playSong(song);
+        }
+    };
+
+//---------------------------------------------------------------------------------------------------------------------
+
+    /**
+    * @function SongPlayer.next
+    * @desc changes current song to next song (according to songs index in fixtures.js), and plays it
+    */
+
+    SongPlayer.next = function() {
       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+      currentSongIndex++;
 
-      console.log(currentSongIndex + "     " + SongPlayer.currentSong.title);
-      currentSongIndex--;
-      console.log(currentSongIndex);
-
-      if (currentSongIndex < 0){
+      if (currentSongIndex >= currentAlbum.songs.length) {
         currentBuzzObject.stop();
         SongPlayer.currentSong.playing = null;
-        console.log("Index less than zero!");
       } else {
         var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
         playSong(song);
-        console.log("Index not less than zero, play that shit!");
       }
     };
 
-    return SongPlayer;
-  }
+//--------------------------------------------------------------------------------------------------------------------
 
-  angular
-  .module('blocJams')
-  .factory('SongPlayer', ['Fixtures', SongPlayer]);
+  return SongPlayer;
+}
+angular
+.module('blocJams')
+.factory('SongPlayer', ['Fixtures', SongPlayer]);
+
 })();
