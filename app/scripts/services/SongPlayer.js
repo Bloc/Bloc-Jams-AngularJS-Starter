@@ -99,6 +99,22 @@
 //---------------------------------------------------------------------------------------------------------------------
 
     /**
+    * @desc variable to hold volume, should be value between 0 and 100
+    * @type {number}
+    */
+    SongPlayer.volume = 50;
+
+//---------------------------------------------------------------------------------------------------------------------
+
+    /**
+    * @desc maximum possible volume for player
+    * @type {number}
+    */
+    SongPlayer.maxVolume = 100;
+
+//---------------------------------------------------------------------------------------------------------------------
+
+    /**
     * @function SongPlayer.play
     * @desc plays song passed to the function
     * @param {object} song
@@ -183,6 +199,19 @@
     SongPlayer.setCurrentTime = function(time) {
       if (currentBuzzObject) {
         currentBuzzObject.setTime(time);
+      }
+    };
+
+//---------------------------------------------------------------------------------------------------------------------
+
+    /**
+    * @function SongPlayer.setVolume
+    * @desc SongPlayer function that wraps the buzz function of setVolume to make it a songPLayer method. Accepts one argument, volume, which should be between 0 and 100
+    * @param {number} volume
+    */
+    SongPlayer.setVolume = function(newVolume) {
+      if (currentBuzzObject) {
+        currentBuzzObject.setVolume(newVolume);
       }
     };
 
