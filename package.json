@@ -18,7 +18,8 @@
     "inert": "^4.2.0"
   },
   "engines": {
-    "node": ">=6.11.1"
+    "node": ">=6.11.1",
+    "npm" : ">=5.5.1"
   },
   "devDependencies": {
     "connect-modrewrite": "^0.7.9",
