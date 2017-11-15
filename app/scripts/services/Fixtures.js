@@ -36,6 +36,14 @@
          return albumPicasso;
           };
 
+          Fixtures.getCollection= function(numberOfAlbums){
+            var albumsDisplayed = [];
+            for(var i=0; i < numberOfAlbums;i++){
+              albumsDisplayed.push(albumPicasso);
+            }
+            return albumsDisplayed;
+          }
+
           return Fixtures;
           }
      angular
