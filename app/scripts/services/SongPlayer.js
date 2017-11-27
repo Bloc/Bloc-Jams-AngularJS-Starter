@@ -75,7 +75,7 @@
         * @desc Current playback time (in seconds) of currently playing song
         * @type {Number}
         */
-        SongPlayer.volume = 100;
+        SongPlayer.volume = 40;
 
  		/**
 		* @function songPlayer.play
@@ -155,6 +155,7 @@
             currentBuzzObject.setVolume(volume);
             }
         };
+
  		return SongPlayer;
     }
      	angular
