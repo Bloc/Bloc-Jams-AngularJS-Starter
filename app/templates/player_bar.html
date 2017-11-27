@@ -23,14 +23,9 @@
              <h2 class="artist-song-mobile">{{playerBar.songPlayer.currentSong.title}} - {{playerBar.albumData.artist}}</h2>
              <h3 class="artist-name">{{playerBar.albumData.artist}}</h3>
              <div class="seek-control">
-<<<<<<< HEAD
-                 <seek-bar value="{{ playerBar.songPlayer.currentTime}}" max="{{ playerBar.songPlayer.currentSong.duration }}" on-change="playerBar.songPlayer.setCurrentTime(value)"></seek-bar>
-                  <div class="current-time">{{ playerBar.songPlayer.currentTime | timecode }}</div>
-=======
-                 <seek-bar value="{{ playerBar.songPlayer.currentTime }}" max="{{ playerBar.songPlayer.currentSong.duration }}" on-change="playerBar.songPlayer.setCurrentTime(value)"></seek-bar>
-                 <div class="current-time">{{ playerBar.songPlayer.currentTime | timecode }}</div>
->>>>>>> checkpoint-11-filters-fixed
-                 <div class="total-time">{{ playerBar.songPlayer.currentSong.duration | timecode }}</div>
+                <seek-bar value="{{ playerBar.songPlayer.currentTime }}" max="{{ playerBar.songPlayer.currentSong.duration }}" on-change="playerBar.songPlayer.setCurrentTime(value)"></seek-bar>
+                <div class="current-time">{{ playerBar.songPlayer.currentTime | timecode }}</div>
+                <div class="total-time">{{ playerBar.songPlayer.currentSong.duration | timecode }}</div>
              </div>
          </div>
          <div class="control-group volume">
