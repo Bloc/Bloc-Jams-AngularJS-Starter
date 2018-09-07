@@ -5,9 +5,5 @@
 
     angular
       .module('blocJams')
-<<<<<<< HEAD
-      .controller('CollectionCtrl', ['Fixtures', CollectionCtrl);
-=======
       .controller('CollectionCtrl', ['Fixtures', CollectionCtrl]);
->>>>>>> CP-Services-Part1
       })();
