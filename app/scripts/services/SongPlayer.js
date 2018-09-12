@@ -1,38 +1,13 @@
-(function() {
-<<<<<<< HEAD
-     function SongPlayer() {
-          var SongPlayer = {};
-
-          SongPlayer.play = function(song) {
-                   var currentBuzzObject = new buzz.sound(song.audioUrl, {
-                       formats: ['mp3'],
-                       preload: true
-                   });
-
-                   currentBuzzObject.play();
-               };
-
-          return SongPlayer;
-     }
-
-     angular
-         .module('blocJams')
-         .factory('SongPlayer', SongPlayer);
- })();
-=======
+function() {
   function SongPlayer() {
     var SongPlayer = {};
-
-    var currentSong = null;
-
-    /*
+     var currentSong = null;
+     /*
      * @desc Buzz object audio file
      * @type {Object}
      */
     var currentBuzzObject = null;
-
-
-    /*
+     /*
      * @function setSong
      * @desc Stops currently playing song and loads new audio file as currentBuzzObject
      * @param {Object} song
@@ -42,40 +17,50 @@
         currentBuzzObject.stop();
         currentSong.playing = null;
       }
-
-      currentBuzzObject = new buzz.sound(song.audioUrl, {
+       currentBuzzObject = new buzz.sound(song.audioUrl, {
         formats: ['mp3'],
         preload: true
       });
-
-      currentSong = song;
+       currentSong = song;
     };
 
 
-    SongPlayer.play = function(song) {
+      /*
+    * @function playSong
+    * @desc Plays currently playing song.
+    * @param {Object} song
+    */
+var playSong = function(song) {
+  if (currentBuzzObject) {
+    currentBuzzObject.play();
+    currentSong.playing = true;
+};
+
+
+
+/*
+* @function SongPlayer
+* @desc sets and plays the current Buzz object
+* @param song
+* @type object
+*/
+     SongPlayer.play = function(song) {
       if (currentSong !== song) {
         setSong(song);
-        currentBuzzObject.play();
-        song.playing = true;
+        playSong(song);
       } else if (currentSong === song) {
         if (currentBuzzObject.isPaused()) {
           currentBuzzObject.play();
-
-        }
+         }
       }
     };
-
-    SongPlayer.pause = function(song) {
+     SongPlayer.pause = function(song) {
       currentBuzzObject.pause();
       song.playing = false;
     };
-
-    return SongPlayer;
+     return SongPlayer;
   }
-
-  angular
+   angular
     .module('blocJams')
     .factory('SongPlayer', SongPlayer);
-
-})();
->>>>>>> CP-Services-Part2
+ })();
