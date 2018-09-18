@@ -54,6 +54,6 @@
 
   angular
     .module('blocJams')
-    .factory('SongPlayer', SongPlayer);
+    .factory('SongPlayer', songPlayer);
 
 })();
