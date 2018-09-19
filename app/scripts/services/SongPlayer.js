@@ -1,4 +1,4 @@
-function() {
+(function() {
     function SongPlayer() {
       var SongPlayer = {};
 
@@ -43,7 +43,7 @@ function() {
         if (currentBuzzObject) {
           currentBuzzObject.play();
           currentSong.playing = true;
-        };
+        }
 
 
 
@@ -73,13 +73,15 @@ function() {
         };
 
         return SongPlayer;
-      }
+      };
 
       angular
         .module('blocJams')
         .factory('SongPlayer', SongPlayer);
       }
     })();
+
+
 
 
 
